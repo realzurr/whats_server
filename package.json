@@ -1,5 +1,13 @@
 {
+  "name": "whats-server-tenda",
+  "version": "1.0.0",
+  "description": "Servidor HTTP para envio de mensagens WhatsApp",
+  "main": "whats_server.js",
+  "scripts": {
+    "start": "node whats_server.js"
+  },
   "dependencies": {
+    "dotenv": "^16.6.1",
     "express": "^5.2.1",
     "puppeteer": "^25.0.4",
     "qrcode-terminal": "^0.12.0",

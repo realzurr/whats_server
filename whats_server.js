@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const qrcode = require("qrcode-terminal");
 const { Client, LocalAuth } = require("whatsapp-web.js");
@@ -5,8 +7,8 @@ const { Client, LocalAuth } = require("whatsapp-web.js");
 const app = express();
 app.use(express.json());
 
-const PORT = 3001;
-const API_KEY = "623e92ea5a09e2f888bf76e4d2234bd27784ad8524b31af1e185e971676ed355";
+const PORT = process.env.PORT || 3001;
+const API_KEY = process.env.API_KEY;
 
 const client = new Client({
   authStrategy: new LocalAuth({
@@ -45,7 +47,7 @@ client.initialize();
 function validar(req, res, next) {
   const key = req.headers["x-api-key"];
 
-  if (key !== API_KEY) {
+  if (!API_KEY || key !== API_KEY) {
     return res.status(401).json({ error: "Não autorizado" });
   }
 
